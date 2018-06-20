@@ -99,7 +99,7 @@ menu:
   about: /about/ || user
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
+  commonweal: /404.html || heartbeat
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -202,7 +202,7 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
