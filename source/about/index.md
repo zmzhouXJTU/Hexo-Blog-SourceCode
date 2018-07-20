@@ -17,7 +17,7 @@ comments: false
 
 A  Postgraduate  From  XJTU
 
-研究方向：Deep Learning && Computer vision
+研究方向：Unsupvised Feature Learning and Deep Learning
 
 ---
 
