@@ -98,7 +98,7 @@ $ sudo su
 
 ``` bash
 ~/Documents/Folder1$ cd ~
-# 去往Home
+# 去往当前用户的主目录
 ```
 
 ---
