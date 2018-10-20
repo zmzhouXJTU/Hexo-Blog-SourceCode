@@ -1,5 +1,5 @@
 ---
-title: Linux常用命令
+title: Linux常用命令之目录和文件
 categories: Linux操作系统
 tags: Linux
 date: 2018-04-26 09:45:24
