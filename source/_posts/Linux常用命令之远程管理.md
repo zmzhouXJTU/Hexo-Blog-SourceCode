@@ -101,7 +101,6 @@ $ ping 127.0.0.1
 在Linux中`SSH`是非常常用的工具，通过`SSH客户端`我们可以连接到运行了`SSH服务器`的远程机器上.
 
 ![SSH示意图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/001_SSH%E7%A4%BA%E6%84%8F%E5%9B%BE.png 'SSH示意图')
-<br>
 
 * **SSH客户端**是一种使用`Secure Shell(SSH)`协议连接到远程计算机的软件程序
 * `SSH`是目前较可靠，**专为远程登录会话和其他网络服务**提供安全性的协议
