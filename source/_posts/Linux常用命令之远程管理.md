@@ -1,5 +1,5 @@
 ---
-title: Linux常用命令之远程管理.md
+title: Linux常用命令之远程管理
 date: 2018-10-20 18:25:06
 categories: Linux操作系统
 tags: Linux
