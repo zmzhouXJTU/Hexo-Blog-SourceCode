@@ -209,7 +209,7 @@ which useradd
 * `su`不接用户名，可以切换到`root`,但是不推荐使用，因为不安全
 * `exit`示意图如下：
   
-![`su`和`exit`示意图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90/003_su%E5%92%8Cexit%E7%A4%BA%E6%84%8F%E5%9B%BE.png '`su`和`exit`示意图')
+![su和exit示意图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90/003_su%E5%92%8Cexit%E7%A4%BA%E6%84%8F%E5%9B%BE.png 'su和exit示意图')
 
 ---
 
