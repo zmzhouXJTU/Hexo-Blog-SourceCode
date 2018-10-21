@@ -170,5 +170,5 @@ $ sudo apt upgrade
 > 所谓镜像源，就是**所有服务器的内容是相同的(镜像)**，但是根据所在位置不同，国内服务器通常速度会更快一些！
 
 ![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B%E5%85%B6%E4%BB%96/002_%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.png )
-<br>
+
 ![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B%E5%85%B6%E4%BB%96/003_ubuntu%E8%AE%BE%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90.png)
