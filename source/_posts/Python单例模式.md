@@ -1,7 +1,9 @@
 ---
 title: Python单例模式
 date: 2018-10-27 11:19:19
-categories: [设计模式, Python]
+categories:
+  - Python
+  - 设计模式
 tags: [Python, Design Pattern]
 ---
 
