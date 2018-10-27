@@ -10,6 +10,7 @@ tags: [Python, Design Pattern]
 * 单例设计模式
 * `__new__`方法
 * Python中的单例
+<!--more-->
   
 ---
 
