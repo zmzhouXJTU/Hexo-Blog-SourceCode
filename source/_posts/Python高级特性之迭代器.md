@@ -207,7 +207,7 @@ if __name__ == '__main__':
 
 ---
 
-### for ... in ... 的本质
+## for ... in ... 的本质
 
 `for item in Iterable`循环的本质就是先通过`iter()`函数获取可迭代对象`Iterable`的迭代器，然后对获取到的迭代器不断调用`next()`方法来获取下一个值并将其赋值给`item`，当遇到`StopIteration`的异常后循环结束。
 
