@@ -82,15 +82,15 @@ Out[98]: 58890680
 
 > copy.copy()
 
-![copy.copy()方法_01](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/copy.copy()_01.png 'copy.copy()方法_01')
+![copy.copy()方法_01](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/%E6%B5%85%E6%8B%B7%E8%B4%9D01.png 'copy.copy()方法_01')
 
-![copy.copy()方法_02](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/copy.copy()_02.png 'copy.copy()方法_02')
+![copy.copy()方法_02](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/%E6%B5%85%E6%8B%B7%E8%B4%9D02.png 'copy.copy()方法_02')
 
 
 > copy.deepcopy()
 
-![copy.deepcopy()方法_01](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/copy.deepcopy()_01.png 'copy.deepcopy()方法_01')
+![copy.deepcopy()方法_01](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%8B%B7%E8%B4%9D01.png 'copy.deepcopy()方法_01')
 
-![copy.deepcopy()方法_02](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/copy.deepcopy()_02.png 'copy.deepcopy()方法_02')
+![copy.deepcopy()方法_02](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%8B%B7%E8%B4%9D02.png 'copy.deepcopy()方法_02')
 
-![copy.deepcopy()方法_03](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/copy.deepcopy()_03.png 'copy.deepcopy()方法_03')
+![copy.deepcopy()方法_03](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/Python%E4%B9%8B%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%8B%B7%E8%B4%9D03.png 'copy.deepcopy()方法_03')
