@@ -153,7 +153,7 @@ print(obj)
 
 ---
 
-### `__getitem\__`、`__setitem__`、`__delitem__`
+### `__getitem__`、`__setitem__`、`__delitem__`
 
 * 用于**索引**操作，如字典。以上分别表示获取、设置、删除数据:
 
