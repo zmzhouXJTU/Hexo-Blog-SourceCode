@@ -44,7 +44,7 @@ $ git push -u origin master
 
 ## 建立工程
 
-在工作目录中建立与远程仓库关联的Git工程主要有两种情况：第一种是由本地上传到远程仓库；第二种是从远程仓库克隆到本地。
+在工作目录中建立与远程仓库关联的`Git`工程主要有两种情况：第一种是由本地上传到远程仓库；第二种是从远程仓库克隆到本地。
 
 ### 本地上传
 
@@ -85,7 +85,7 @@ $ git clone <url>
 
 ### 克隆其他分支
 
-`git clone`命令默认克隆远程项目的`master`分支及其历史，若还需克隆别的分支，可通过以下方式进行（以克隆dev分支为例）：
+`git clone`命令默认克隆远程项目的`master`分支及其历史，若还需克隆别的分支，可通过以下方式进行（以克隆`dev`分支为例）：
 
 ``` bash
 $ git checkout -b dev origin/dev
@@ -192,7 +192,7 @@ $ git push origin --delete <remote_branch>
 
 ``` bash
 $ git merge <branch>
-#快进合并（指针指向改变），合并<branch>到当前分支
+#快进合并（指针指向改变），合并<branch>分支到当前分支
 
 $ git merge --no-ff <branch>
 #合并<branch>到当前分支，在当前分支生成新节点，保证每个分支的独立演变史
@@ -216,11 +216,14 @@ $ git checkout .
 #撤销所有工作区修改
 ```
 
-### 撤销暂存
+### 撤销暂存区修改
 
 ``` bash
 $ git reset HEAD <file>
-#将指定文件撤出暂存区
+# 将指定文件撤出暂存区
+
+$ git checkout -- <file>
+# 将文件在工作区的修改也撤销
 ```
 
 ### 版本回退
@@ -231,10 +234,13 @@ $ git reset HEAD <file>
 $ git log
 #查看之前的版本提交记录
 
-$ git reset HEAD^
+$ git reflog
+#记录你的每一条命令，用于查看命令历史
+
+$ git reset --hard HEAD^
 #回退到上一个提交版本，^^代表上两个版本，以此类推。（也可以用~2等代替）
 或
-$ git reset <commitID>
+$ git reset --hard <commitID>
 #commitID可由git log查看得到
 ```
 
@@ -255,6 +261,21 @@ $ git reset --hard HEAD^
 在没有将之后的提交推送到远程仓库的情况下，`git reset --hard`是个很危险的操作。若是已经推送到远程仓库，使用`git pull`可以重新获得之后的版本提交。
 若是在没有远程备份时使用`--hard`进行版本回退，又想恢复到之后的版本，在一定时间内（一般为30天）可以通过`git reflog`查看操作id，再使用`git reset --hard <ID>`恢复。
 
+### 删除文件
+
+在`Git`中，删除也是一个修改操作，来让我们实战一下
+
+```bash
+$ rm <file>
+# 在工作区删除该文件
+
+$ git rm <file>
+# git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容
+
+$ git commit -m "rm xxx"
+# 向版本库提交信息
+```
+
 ### stash储藏
 
 有时手头的工作进行到一半，需要切换分支做一些其他事情，可以采用`git stash`命令将当前的工作区储藏起来。
@@ -268,6 +289,7 @@ $ git stash list
 
 $ git stash apply
 #应用栈顶的储藏内容，恢复工作区到之前的储藏状态
+
 $ git stash apply stash@{2}
 #应用指定储藏内容
 
@@ -324,8 +346,23 @@ $ git pull
 $ git branch --set-upstream branch-name origin/branch-name
 ```
 
-最后再将你改好的分支`push`到远程仓库。
+最后再将你改好的解决冲突之后的分支`push`到远程仓库。
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+### rebase
+
+从前面的分析我们可以看出，多人在同一个分支上协作时，很容易出现冲突。即使没有冲突，后`push`的童鞋不得不先`pull`，在本地合并，然后才能`push`成功
+
+这样每次合并再`push`以后，分支看上去会很乱。有强迫症的童鞋会问：为什么Git的提交历史不能是一条干净的直线？
+
+其实是可以做到的！`Git`有一种称为`rebase`的操作，有人把它翻译成<b>“变基”</b>
+`rebase`操作的特点：把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了
+
+```bash
+$ git rebase
+# rebase操作可以把本地未push的分叉提交历史整理成直线；
+# rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比
+```
 
 ---
 
@@ -340,6 +377,13 @@ $ git status
 任何情况下都可以使用`git status`命令查看当前的版本控制状态（包括工作区、暂存区、仓库区），并给出当前状态下可能会用到的命令提示。
 经常使用该命令是好习惯。
 
+### 查看历史信息
+
+```bash
+$ git log [--pretty=oneline]
+# git log命令显示从最近到最远的提交日志
+```
+
 ### 查看远程库信息
 
 ```bash
@@ -351,7 +395,7 @@ $ git remote -v
 ``` bash
 $ git config user.name "your name"
 $ git config user.email "email@example.com"
-#配置当前目录的git用户，加上--config参数时配置这台机器的所有git仓库
+# 配置当前目录的git用户，加上--config参数时配置这台机器的所有git仓库
 ```
 
 ### 协议更改
