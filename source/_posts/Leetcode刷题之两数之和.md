@@ -10,7 +10,7 @@ tags: [Leetcode, Python, 算法]
 
 ---
 
-## 两数之和
+## 两数之和(难度: Easy)
 
 ### 题目描述
 
@@ -30,6 +30,10 @@ tags: [Leetcode, Python, 算法]
 
 ### Python解答
 
+> 思路一：**- 时间复杂度: O(N^2) - 空间复杂度: O(1)**
+> 暴力解法，两轮遍历
+> beats：27.6%
+
 ```Python
 
 class Solution(object):
@@ -39,10 +43,44 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        dicts = {}
-        for k, v in enumerate(nums):
-            if target - v in dicts:
-                return [dicts.get(target-v), k]
-            dicts[v] = k
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+
+```
+
+> 思路二：**- 时间复杂度: O(N) - 空间复杂度: O(N)**
+> 上面的思路一太慢了，我们可以**牺牲空间换取时间**。
+
+```Python
+
+           2        7        11    15
+         不存在   存在之中
+lookup   {2:0}    [0，1]
+
+```
+
+* 建立字典`lookup`存放第一个数字，并存放该数字的`index`
+* 判断 `lookup`种是否存在： `target - 当前数字`， 则表面当前值和`lookup`中的值加和为`target`
+* 如果存在，则返回：`target - 当前数字`的`index`和当前值的`index`
+
+> beats 100%
+
+```Python
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        lookup = {}
+        for i, num in enumerate(nums):
+            if target - num in lookup:
+                return [lookup[target-num], i]
+            else:
+                lookup[num] = i
 
 ```
