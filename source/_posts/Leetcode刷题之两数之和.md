@@ -2,7 +2,7 @@
 title: Leetcode刷题之两数之和
 date: 2018-11-13 20:53:04
 categories: [Leetcode刷题]
-tags: [Leetcode, Python, 算法]
+tags: [Leetcode, Python, 算法, 数组]
 ---
 
 很久之前就有要写记录自己刷题的日记(博客)，奈何之前一直忙着没有太多时间，现在闲下来了，就赶紧把自己刷的题记录下来，哈哈。这里记录的是基于`Python`语言实现的`Leetcode`上面的算法题。好了，话不多说，让我们开始吧！
@@ -28,7 +28,7 @@ tags: [Leetcode, Python, 算法]
 
 ```
 
-### Python解答
+### 解题方案
 
 > 思路一：**- 时间复杂度: O(N^2) - 空间复杂度: O(1)**
 > 暴力解法，两轮遍历
