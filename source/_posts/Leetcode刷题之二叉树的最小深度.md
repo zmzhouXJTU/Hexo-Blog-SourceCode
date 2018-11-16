@@ -1,7 +1,7 @@
 ---
 title: Leetcode刷题之二叉树的最小深度
 date: 2018-11-15 18:51:16
-categories: [[Leetcode刷题]]
+categories: [Leetcode刷题]
 tags: [Leetcode, Python, 算法, 树]
 ---
 
