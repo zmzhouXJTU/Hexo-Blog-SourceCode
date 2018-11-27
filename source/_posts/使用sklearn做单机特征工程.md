@@ -102,13 +102,7 @@ Normalizer().fit_transform(iris.data)
 
 定量特征二值化的核心在于设定一个阈值，大于阈值的赋值为1，小于等于阈值的赋值为0，公式表达如下：
 
-$$
-x = 
-\begin{cases}
-1, & \text{x > threshold}\\
-0, & \text{x <= threshold}
-\end{cases}
-$$
+![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93/%E4%BA%8C%E5%80%BC%E5%8C%96.png)
 
 使用`preproccessing`库的`Binarizer`类对数据进行二值化的代码如下：
 
@@ -148,9 +142,7 @@ Imputer().fit_transform(vstack((array([nan, nan, nan, nan]), iris.data)))
 
 常见的数据变换有基于多项式的、基于指数函数的、基于对数函数的。4个特征，度为2的多项式转换公式如下：
 
-$$(x_1', x_2', x_3', x_4', x_5', x_6', x_7', x_8', x_9', x_{10}', x_{11}', x_{12}', x_{13}', x_{14}', x_{15}')\\
-=(1, x_1', x_2', x_3', x_4', x_1^2, x_1*x_2, x_1*x_3, x_1*x_4, x_2^2, x_2*x_3, x_2*x_4, x_3^2, x_3*x_4, x_4^2)
-$$
+![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93/%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2.png)
 
 使用`preproccessing`库的`PolynomialFeatures`类对数据进行多项式转换的代码如下：
 
