@@ -103,11 +103,10 @@ Normalizer().fit_transform(iris.data)
 定量特征二值化的核心在于设定一个阈值，大于阈值的赋值为1，小于等于阈值的赋值为0，公式表达如下：
 
 $$
-x' = 
+x = 
 \begin{cases}
-1,\ x > threshold
-\\
-0,\ x <= threshold
+1, & \text{x > threshold}\\
+0, & \text{x <= threshold}
 \end{cases}
 $$
 
@@ -149,9 +148,7 @@ Imputer().fit_transform(vstack((array([nan, nan, nan, nan]), iris.data)))
 
 常见的数据变换有基于多项式的、基于指数函数的、基于对数函数的。4个特征，度为2的多项式转换公式如下：
 
-$$ 
-(x_1', x_2', x_3', x_4', x_5', x_6', x_7', x_8', x_9', x_{10}', x_{11}', x_{12}', x_{13}', x_{14}', x_{15}')
-\\
+$$(x_1', x_2', x_3', x_4', x_5', x_6', x_7', x_8', x_9', x_{10}', x_{11}', x_{12}', x_{13}', x_{14}', x_{15}')\\
 =(1, x_1', x_2', x_3', x_4', x_1^2, x_1*x_2, x_1*x_3, x_1*x_4, x_2^2, x_2*x_3, x_2*x_4, x_3^2, x_3*x_4, x_4^2)
 $$
 
