@@ -17,7 +17,7 @@ comments: false
 
 A  Postgraduate  From  XJTU
 
-研究方向：Content-Based Image Retrieval
+研究方向：基于深度学习的图像检索
 
 ---
 
