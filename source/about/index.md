@@ -13,11 +13,11 @@ comments: false
 
 ## 关于我
 
-一个想进军数据科学领域的小菜鸟，欢迎各位大佬多多指教
+一个想进军人工智能领域的小菜鸟，欢迎各位大佬多多指教
 
 A  Postgraduate  From  XJTU
 
-研究方向：3D Deep Learning
+研究方向：Content-Based Image Retrieval
 
 ---
 
