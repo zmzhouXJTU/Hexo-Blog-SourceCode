@@ -8,14 +8,14 @@ subtitle: 你必须非常努力，才能看起来毫不费力。
 description: 用来记录自己学习旅程的个人小站  #网站描述 SEO
 keywords: 数据分析与挖掘
 author: Zhou Zhuming
-language: zh-Hans
+language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://zhouzhuming.tech/
 root: /
-permalink: :title/
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
@@ -109,3 +109,8 @@ sitemap:
 baidusitemap:
     path:  baidusitemap.xml
 
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
