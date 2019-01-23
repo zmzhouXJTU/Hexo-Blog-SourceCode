@@ -304,7 +304,7 @@ font:
   enable: true
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default).
-  host:
+  host: //fonts.lug.ustc.edu.cn  # fonts.lug.ustc.edu.cn是中科大的源。
 
   # Font options:
   # `external: true` will load this font family from `host` above.
