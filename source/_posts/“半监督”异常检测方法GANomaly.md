@@ -19,7 +19,7 @@ tags: [GAN, 异常检测]
 
 ### 主要思想
 
-![GANomaly网络结构图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/GANomaly%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9B%BE.jpg?q-sign-algorithm=sha1&q-ak=AKIDXQQ5nYKV9tB0A53Ch3RPuEzYRE9JFW9I&q-sign-time=1557749755;1557751555&q-key-time=1557749755;1557751555&q-header-list=&q-url-param-list=&q-signature=876a4bc74bbd818722bb47603a4923cb9d35985f&x-cos-security-token=1fb92c4b48e8846ad2f8b705ccf682038bee381910001)
+![GANomaly网络结构图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/GANomaly%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9B%BE.jpg?q-sign-algorithm=sha1&q-ak=AKIDYuRsCWWy2KYdnoDzOj4KnmOHcvOfht4e&q-sign-time=1557756754;1557758554&q-key-time=1557756754;1557758554&q-header-list=&q-url-param-list=&q-signature=873584c4426a9a59cdab044a1c9238d432299902&x-cos-security-token=3f75eb149a70e602766357d9dd680a4cca61e36b10001)
 
 
 如上图所示，不同于一般的基于自编码器的方法，本文采用的是一个**编码器(Encoder1)-解码器(Decoder)-编码器(Encoder2)的网络结构**，同时学习“原图->重建图”和“原图的编码->重建图的编码”两个映射关系。该方法不仅对生成的图片外观(图片->图片)做了的约束，也对图片内容(图片编码->图片编码)做了约束。另外，该方法还引入了生成对抗网络(GAN)中的对抗训练思想。这里，作者将**Encoder1-Decoder-Encoder2**当成生成网络G-Net，又定义了一个判别网络D-Net，通过交替训练生成网络和对抗网络，最终学到一个比较好的生成网络。
@@ -36,7 +36,7 @@ tags: [GAN, 异常检测]
 
 **第一个子网络**是一个常规的碗形的自编码器，它的作用是**用于重建输入的OK图像**。该自编码器结构的设计参考了**DCGAN**，具体而言，该自编码器的解码器部分(Decoder)和DCGAN的生成网络几乎是一样的，即从一个n维的向量(bottleneck1)映射到一张3通道的图片，如下图所示。该自编码器的编码器部分(Encoder1)则是编码器的逆过程，即从一张3通道的图片映射到一个n维的向量。
 
-![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/DCGAN.jpg?q-sign-algorithm=sha1&q-ak=AKIDYY0xsedP6xbUJcV13QvWwfE1pLhNofgT&q-sign-time=1557750874;1557752674&q-key-time=1557750874;1557752674&q-header-list=&q-url-param-list=&q-signature=8f350320af5c4e2827ea07676b40c12626b439c3&x-cos-security-token=ef46d23b3c2fccd65bede6940ac153bd12798f9410001)
+![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/DCGAN.jpg?q-sign-algorithm=sha1&q-ak=AKIDHuHJnfB5dYJFO7L7Bd0j1SesOYxyTGNf&q-sign-time=1557756772;1557758572&q-key-time=1557756772;1557758572&q-header-list=&q-url-param-list=&q-signature=1ed77013cbeaf543d3eccaa120ad0986b9eb0cfd&x-cos-security-token=ca8caa7fcbc08363bf345ed53a922142dd342d3c10001)
 
 **第二个子网络**是一个编码网络(Encoder2)，它的作用是将第一个子网络重建出来的图片再压缩为一个n维的向量(bottleneck2)。虽然Encoder2采用的结构和Encoder1是一样的，但它们的参数显然是不一样的。**这么一个重复的结构看起来没有什么了不起的，但笔者认为该结构是本文思想中最为核心的地方，它摒弃了绝大部分基于自编码器的异常检测方法常用的通过对比原图和重建图的差异来推断异常的方式，采用了一种新的通过对比原图和重建图在高一层抽象空间中的差异来推断异常的方式，而这一层额外的抽象可以使其大大提高抗噪声干扰的能力，学到更加鲁棒的异常检测模型。**
 
@@ -54,15 +54,15 @@ tags: [GAN, 异常检测]
 
 **第一个子网络的损失**是**自编码器的重建损失**，这里借鉴了`pix2pix`文章中生成网络的损失，采用的是L1损失，而不是L2损失。因为**采用L2损失生成的图像通常比采用L1生成的图像要模糊**。
 
-$$L_{rec} = l_{1\_}loss(input_{\_}real, input_{\_}fake)$$
+$$L_{rec} = l_{1}-loss(input-real, input-fake)$$
 
 **第二个子网络的损失**是**编码网络的损失**，这里需要比对的是原图和重建图在高一层抽象空间中的差异，即两个bottleneck(上文中的bottleneck1和bottleneck2)间的差异，采用的是L2损失。
 
-$$L_{enc} = l_{2\_}loss(bottleneck1, bottleneck2)$$
+$$ L_{enc} = l_2-loss(bottleneck1, bottleneck2)$$
 
 **第三个子网络的损失**是**常规的GAN中判别网络的损失**，这里采用的是二分类的交叉熵损失。
 
-$$L_{adv} = bce_{\_}loss(input_{\_}d)$$
+$$ L_{adv} = bce-loss(input-d)$$
 
 正常来说，采用第一个子网络的生成损失和第三个子网络的判别损失就能生成比较不错的图片了，但是这篇文章主要解决的是**异常检测问题**。异常是图片集的特性，采用像素级的损失(原图和重建图的差异)来推断是不够合理的，因而引入了第二个子网络的编码损失，文章中最后用于推断的也是该损失。
 
@@ -76,13 +76,13 @@ $$L_{adv} = bce_{\_}loss(input_{\_}d)$$
 
 $$L_{D-Net} = L_{adv}$$
 
-这里的输入$input_{\_}d = concat(input_{\_}real, input_{\_}fake)$。虽然这里的$input_{\_}fake$ 需要通过G-Net来生成，但是训练D-Net时，G-Net的参数是固定的。
+这里的输入$input-d = concat(input-real, input-fake)$。虽然这里的$input-fake$ 需要通过G-Net来生成，但是训练D-Net时，G-Net的参数是固定的。
 
 **优化G-Net**时，采用的损失比较复杂：
 
 $$L_{G-Net} = \alpha L_{rec} + \beta L_{enc} + \gamma L_{adv}$$
 
-主体损失为重建损失$L_{rec}$, 编码损失$L_{enc}$为重建损失的一个约束，对抗损失$L_{adv}$则是用来和D-Net博弈。需要注意的一点是，这里的对抗损失的输入对象和优化D-Net时的输入对象是不一样的，这里的$input_{\_}d = input_{\_}fake$, 这和常规GAN的训练是一致的。
+主体损失为重建损失$L_{rec}$, 编码损失$L_{enc}$为重建损失的一个约束，对抗损失$L_{adv}$则是用来和D-Net博弈。需要注意的一点是，这里的对抗损失的输入对象和优化D-Net时的输入对象是不一样的，这里的$input-d = input-fake$, 这和常规GAN的训练是一致的。
 
 ---
 
@@ -96,11 +96,11 @@ $$L_{G-Net} = \alpha L_{rec} + \beta L_{enc} + \gamma L_{adv}$$
 
 要做基于GANomaly的异常检测实验，需要准备大量的OK样本和少量的NG样本。找不到合适的数据集怎么办？很简单，随便找个开源的分类数据集，将其中一个类别的样本当作异常类别，其他所有类别的样本当作正常样本即可，文章中的实验就是这么干的。具体试验结果如下：
 
-![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C1.jpg?q-sign-algorithm=sha1&q-ak=AKIDiKzNKXbhyqpoa9NusrP07Hw92N6kyxON&q-sign-time=1557754225;1557756025&q-key-time=1557754225;1557756025&q-header-list=&q-url-param-list=&q-signature=436142885e28179a51ecf4a594108d7a85cef84f&x-cos-security-token=dc6c9ed2e69cd2238fe919299bd03c23c85c777d10001)
+![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C1.jpg?q-sign-algorithm=sha1&q-ak=AKIDK37LOkNOz6DYfsJv9vuxRTHPjCUgHe9s&q-sign-time=1557756510;1557758310&q-key-time=1557756510;1557758310&q-header-list=&q-url-param-list=&q-signature=9446846aea59c157a91e9e74b60f56900313072f&x-cos-security-token=296c9fa7fee1c34bca44ecf8db4b2a18cc7ec06710001)
 
 反正在效果上，GANomaly是超过了之前两种代表性的方法。此外，作者还做了性能对比的实验。事实上前面已经介绍了GANomaly的推断方法，就是一个简单的前向传播和一个对比阈值的过程，因此速度非常快。具体结果如下：
 
-![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C2.jpg?q-sign-algorithm=sha1&q-ak=AKIDrjC9TdSqNFPXULSbqmwbJ3WZRZQVwrRp&q-sign-time=1557754282;1557756082&q-key-time=1557754282;1557756082&q-header-list=&q-url-param-list=&q-signature=e59aad3f4fad4e17c8191fcbb9a29f0057c3d68a&x-cos-security-token=13866eef7aacfe70d690356395a2ddad405c521e10001)
+![](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C2.jpg?q-sign-algorithm=sha1&q-ak=AKIDtptlp2Cz6iF1mf4q5gfljBTzoxWLB2LD&q-sign-time=1557756527;1557758327&q-key-time=1557756527;1557758327&q-header-list=&q-url-param-list=&q-signature=471bc978a45b7167eac7be9e840fa7a9c781bc8d&x-cos-security-token=bff2976680831dd9ad344323cbbb156cf9cdaa8210001)
 
 可以看出，计算性能上，GANomaly表现也是非常不错的。
 
