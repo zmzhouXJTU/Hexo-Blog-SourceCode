@@ -19,7 +19,7 @@ tags: [GAN, 异常检测]
 
 ### 主要思想
 
-![GANomaly网络结构图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/GANomaly%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9B%BE.jpg?q-sign-algorithm=sha1&q-ak=AKID0FZoYQkNUe71GQGrvl6cd7TBNHxNe8ed&q-sign-time=1558683028;1558684828&q-key-time=1558683028;1558684828&q-header-list=&q-url-param-list=&q-signature=a892bc2435e079e3328c95bc53f5b9f6f3945804&x-cos-security-token=b2f685260f3f63f57de5a574b44aca8a8b1982f310001)
+![GANomaly网络结构图](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/GANomaly%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9B%BE.jpg)
 
 
 如上图所示，不同于一般的基于自编码器的方法，本文采用的是一个**编码器(Encoder1)-解码器(Decoder)-编码器(Encoder2)的网络结构**，同时学习“原图->重建图”和“原图的编码->重建图的编码”两个映射关系。该方法不仅对生成的图片外观(图片->图片)做了的约束，也对图片内容(图片编码->图片编码)做了约束。另外，该方法还引入了生成对抗网络(GAN)中的对抗训练思想。这里，作者将**Encoder1-Decoder-Encoder2**当成生成网络G-Net，又定义了一个判别网络D-Net，通过交替训练生成网络和对抗网络，最终学到一个比较好的生成网络。
@@ -36,7 +36,7 @@ tags: [GAN, 异常检测]
 
 **第一个子网络**是一个常规的碗形的自编码器，它的作用是**用于重建输入的OK图像**。该自编码器结构的设计参考了**DCGAN**，具体而言，该自编码器的解码器部分(Decoder)和DCGAN的生成网络几乎是一样的，即从一个n维的向量(bottleneck1)映射到一张3通道的图片，如下图所示。该自编码器的编码器部分(Encoder1)则是编码器的逆过程，即从一张3通道的图片映射到一个n维的向量。
 
-![DCGAN](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/DCGAN.jpg?q-sign-algorithm=sha1&q-ak=AKIDjs2TzYdC8kcoHeDkKpHpCoK0ksFNgrVz&q-sign-time=1558683065;1558684865&q-key-time=1558683065;1558684865&q-header-list=&q-url-param-list=&q-signature=47b13736a174b6a3e70587cef3789bcb1d532649&x-cos-security-token=25d85e644cf572cab9b7ce834bbee15cfc96178410001)
+![DCGAN](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/DCGAN.jpg)
 
 **第二个子网络**是一个编码网络(Encoder2)，它的作用是将第一个子网络重建出来的图片再压缩为一个n维的向量(bottleneck2)。虽然Encoder2采用的结构和Encoder1是一样的，但它们的参数显然是不一样的。**这么一个重复的结构看起来没有什么了不起的，但笔者认为该结构是本文思想中最为核心的地方，它摒弃了绝大部分基于自编码器的异常检测方法常用的通过对比原图和重建图的差异来推断异常的方式，采用了一种新的通过对比原图和重建图在高一层抽象空间中的差异来推断异常的方式，而这一层额外的抽象可以使其大大提高抗噪声干扰的能力，学到更加鲁棒的异常检测模型。**
 
@@ -96,11 +96,11 @@ $$L_{G-Net} = \alpha L_{rec} + \beta L_{enc} + \gamma L_{adv}$$
 
 要做基于GANomaly的异常检测实验，需要准备大量的OK样本和少量的NG样本。找不到合适的数据集怎么办？很简单，随便找个开源的分类数据集，将其中一个类别的样本当作异常类别，其他所有类别的样本当作正常样本即可，文章中的实验就是这么干的。具体试验结果如下：
 
-![实验结果一](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C1.jpg?q-sign-algorithm=sha1&q-ak=AKID6r2m3bGxqE93kkk5IvWSat53O9IIqY11&q-sign-time=1558683099;1558684899&q-key-time=1558683099;1558684899&q-header-list=&q-url-param-list=&q-signature=7d0443cd625a33c706a9f48755e3d539368d3af9&x-cos-security-token=344a9c0cdbacc000d17ebdec6217ca7bee6c70fa10001)
+![实验结果一](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C1.jpg)
 
 反正在效果上，GANomaly是超过了之前两种代表性的方法。此外，作者还做了性能对比的实验。事实上前面已经介绍了GANomaly的推断方法，就是一个简单的前向传播和一个对比阈值的过程，因此速度非常快。具体结果如下：
 
-![实验结果二](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C2.jpg?q-sign-algorithm=sha1&q-ak=AKIDVoHbwXxqpc6P2WL5tu9zJGJDkBwVCKtn&q-sign-time=1558683147;1558684947&q-key-time=1558683147;1558684947&q-header-list=&q-url-param-list=&q-signature=dd5c46bed2770c537ec3a95a203ac17ce8d85e23&x-cos-security-token=cdb40c79ba0bff1a5fe7f7854e8936fc7a7144e610001)
+![实验结果二](https://myblogs-photos-1256941622.cos.ap-chengdu.myqcloud.com/GANomaly/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C2.jpg)
 
 可以看出，计算性能上，GANomaly表现也是非常不错的。
 
