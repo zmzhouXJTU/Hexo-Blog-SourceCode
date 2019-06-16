@@ -51,4 +51,4 @@ class Solution(object):
 
 ### 后记
 
-觉得博客这个东西应该是用来总结的，不应该当做刷题的日记。所以啊，这是最后一篇刷题的博文啦！我在`Github`上面专门建了一个仓库来记录我的`Leetcode`刷题之路，下面给出传送门：<https://github.com/zmzhouXJTU/Leetcode-Sword_to_Offer>，欢迎各位看官来踩！
+觉得博客这个东西应该是用来总结的，不应该当做刷题的日记。所以啊，这是最后一篇刷题的博文啦！我在`Github`上面专门建了一个仓库来记录我的`Leetcode`刷题之路，下面给出传送门：<https://github.com/zmzhouXJTU/LeetCode>，欢迎各位看官来踩！
