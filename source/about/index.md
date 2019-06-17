@@ -17,7 +17,7 @@ comments: false
 
 A  Postgraduate  From  XJTU
 
-研究方向：基于深度学习的图像检索
+研究方向：机器学习、深度学习
 
 ---
 
@@ -31,7 +31,7 @@ A  Postgraduate  From  XJTU
 
 ## 联系方式
 
-**Email:** <zzm20132616@163.com>
+**Email:** <2253423162@qq.com>
 
 **Github:** [zmzhouXJTU](https://github.com/zmzhouXJTU)
 
